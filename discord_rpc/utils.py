@@ -65,6 +65,22 @@ def get_event_loop(force_fresh=False):
             pass
         return asyncio.ProactorEventLoop()
 
+def get_random_msg(default = True):
+    import random
+    original = "Drawing something cool!"
+    msgs = [
+        "Dibujando algo cool :3",
+        "Nose honestamente",
+        "Xd uwu",
+        "Practicando sin descanso",
+        "Dibujando weas",
+        "Perdiendo el tiempo",
+        "Practicando anatomía"
+    ]
+    if default:
+        return original
+    else:
+        return random.choice(msgs)
 
 # This code used to do something. I don't know what, though.
 try:  # Thanks, Rapptz :^)

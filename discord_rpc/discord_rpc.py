@@ -1,6 +1,7 @@
 # Extension by Fistbobr
 
 from krita import Extension
+from .utils import get_random_msg
 from .presence import Presence
 import time
 import PyQt5.QtCore
@@ -28,11 +29,12 @@ class DiscordRpc(Extension):
     def update_rpc(self):
         # Detecting new document
         try:
+            msg = get_random_msg(False)
             if Krita.instance().activeDocument() is not None:
                 if self.time is 0:
                     self.time = time.time()
                 if self.file != Krita.instance().activeDocument().fileName():
-                    RPC.update(details="Drawing something cool!",
+                    RPC.update(details=msg,
                                state=str(Krita.instance().activeDocument().name()) or "Unnamed",
                                large_image="krita_logo", 
                                start=int(self.time),
