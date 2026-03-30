@@ -42,7 +42,7 @@ class DiscordRpc(Extension):
                     
                     self.file = Krita.instance().activeDocument().fileName()
             else:
-                RPC.update(details="Idle", large_image="krita_logo", large_text=self.version)
+                RPC.update(details="Idle", large_image="krita_logo", start=int(self.time), large_text=self.version)
                 self.file = None
                 # don't reset time when document is closed
                 #self.time = 0
