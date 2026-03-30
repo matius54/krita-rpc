@@ -70,12 +70,14 @@ def get_random_msg(default = True):
     original = "Drawing something cool!"
     msgs = [
         "Dibujando algo cool :3",
-        "Nose honestamente",
-        "Xd uwu",
+        "No sé, honestamente",
+        "Xd, uwu",
         "Practicando sin descanso",
         "Dibujando weas",
         "Perdiendo el tiempo",
-        "Practicando anatomía"
+        "Practicando anatomía",
+        "Dibujando cubos sin descanso",
+        "Tratando de dibujar un círculo"
     ]
     if default:
         return original
