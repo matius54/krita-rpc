@@ -29,10 +29,12 @@ class DiscordRpc(Extension):
     def update_rpc(self):
         # Detecting new document
         try:
+            if self.time is 0:
+                self.time = time.time()
+
             msg = get_random_msg(False)
+            
             if Krita.instance().activeDocument() is not None:
-                if self.time is 0:
-                    self.time = time.time()
                 if self.file != Krita.instance().activeDocument().fileName():
                     RPC.update(details=msg,
                                state=str(Krita.instance().activeDocument().name()) or "Unnamed",
