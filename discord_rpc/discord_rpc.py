@@ -44,7 +44,8 @@ class DiscordRpc(Extension):
             else:
                 RPC.update(details="Idle", large_image="krita_logo", large_text=self.version)
                 self.file = None
-                self.time = 0
+                # don't reset time when document is closed
+                #self.time = 0
         except:
             pass
 
