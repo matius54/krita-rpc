@@ -1,5 +1,6 @@
 # Extension by Fistbobr
 
+from .utils import get_random_msg
 from krita import Extension, Krita
 from .presence import Presence
 import time
@@ -26,7 +27,7 @@ class DiscordRpc(Extension):
     def __init__(self, parent):
         super().__init__(parent)
         self.file = None
-        self.time = 0
+        self.time = time.time()
         self.timer = QTimer(self)
         self.timer.setInterval(1000)
         self.timer.timeout.connect(self.update_rpc)
@@ -53,14 +54,11 @@ class DiscordRpc(Extension):
             doc = Krita.instance().activeDocument()
 
             if doc is not None:
-                if self.time == 0:
-                    self.time = time.time()
-
                 filename = doc.fileName() or ""
 
                 if self.file != filename:
                     RPC.update(
-                        details="Drawing something cool!",
+                        details=get_random_msg(False),
                         state=str(doc.name()) or "Unnamed",
                         large_image="krita_logo",
                         start=int(self.time),
@@ -73,10 +71,13 @@ class DiscordRpc(Extension):
                 RPC.update(
                     details="Idle",
                     large_image="krita_logo",
+                    start=int(self.time),
                     large_text=self.version
                 )
                 self.file = None
-                self.time = 0
+                # don't reset time when document is closed
+                #self.time = 0
+
         except Exception as e:
             print("RPC update error:", e)
 
